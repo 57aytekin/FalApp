@@ -22,7 +22,8 @@ sealed class HomeRecyclerViewItem {
         val is_deleted : Int? = null,
         val score : Int? = null,
         val gold : Int? = null,
-        val comment_count : Int? = null
+        val comment_count : Int? = null,
+        val user_post : List<Post?> = listOf()
     ): HomeRecyclerViewItem()
 
 

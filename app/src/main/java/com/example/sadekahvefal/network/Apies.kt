@@ -92,6 +92,6 @@ interface Apies {
     @POST("get_user.php")
     suspend fun getUserProfile(
         @Field("user_id") userId: Int
-    ) : LiveData<UserProfileResponse>
+    ) : UserProfileResponse
 
 }
