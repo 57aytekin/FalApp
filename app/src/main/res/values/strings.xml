@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Sade Kahve Fal</string>
+    <!--Register Control-->
+    <string name="valid_user_name">Kullanıcı adınız 5 karakterden küçük, 20 karakterden büyük olamaz</string>
+    <string name="fill_fields">Lütfen tüm alanları doldurunuz</string>
+    <string name="password_dont_match">Şifreleriniz uyuşmamakta</string>
+    <string name="valid_first_name">Adınız 3 karakterden küçük, 15 karakterden büyük olamaz</string>
+    <string name="valid_last_name">Soyadınız 2 karakterden küçük, 15 karakterden büyük olamaz</string>
+    <string name="valid_mail">Mail adresinizi kontrol edin</string>
+    <string name="valid_phone">Telefon numaranızı kontrol edin</string>
+    <string name="match_password">Şifreleriniz uyuşmuyor</string>
+    <string name="valid_password">Şifreniz 9 karakterden küçük olamaz</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Gender-->
+    <string-array name="gender_array">
+        <item>Cinsiyet</item>
+        <item>Erkek</item>
+        <item>Kadın</item>
+    </string-array>
+
+    <!--Relation-->
+    <string-array name="reletion_array">
+        <item>İlişki durumu</item>
+        <item>Evli</item>
+        <item>Boşanmış</item>
+        <item>Nişanlı</item>
+        <item>Sözlü</item>
+        <item>ilişkisi var</item>
+        <item>ilişkisi yok</item>
+        <item>Platonik</item>
+        <item>Karışık</item>
+    </string-array>
+
+    <!--Age-->
+    <string-array name="age_array">
+        <item>Yaş</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+
+    </string-array>
+</resources>

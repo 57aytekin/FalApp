@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lütfen seçiniz"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/number_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/relative"
+        app:np_width="64dp"
+        app:np_height="180dp"
+        app:np_dividerColor="@color/purple"
+        app:np_formatter="Deneme"
+        app:np_selectedTextColor="@color/black"
+        app:np_selectedTextSize="18sp"
+        app:np_textColor="@color/dark_gray"
+        app:np_textSize="16sp"
+        />
+</RelativeLayout>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.AddFragment">
+
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/app_bar_add_fal"/>
+
+    <ProgressBar
+        android:id="@+id/progressAddFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:clickable="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/purple"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:focusable="true" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Kahve Falı Baktır"
+                android:textColor="@color/purple"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView1"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Falının yorumlanması için fincan resimlerini yükle"
+                android:textColor="#858484"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvPhotoError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lütfen 3 adet fincan resmi yükleyiniz."
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:visibility="gone"
+                android:layout_below="@id/textView"
+                android:textColor="@color/red"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_below="@id/tvPhotoError"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvCoffeeImage1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/purple"
+                    app:strokeWidth="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivCoffee1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvCoffeeImage2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/purple"
+                    app:strokeWidth="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivCoffee2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvCoffeeImage3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/purple"
+                    app:strokeWidth="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivCoffee3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear"
+                android:orientation="vertical">
+
+                <!--Gender-->
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawablePadding="10dp"
+                    android:text="Cinsiyet"
+                    android:textSize="18sp"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:drawableStartCompat="@drawable/ic_gender" />
+
+                <include layout="@layout/gray_line" />
+
+                <TextView
+                    android:id="@+id/tvGenderError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Lütfen cinsiyetinizi seçiniz."
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+
+                <!--Job-->
+                <TextView
+                    android:id="@+id/tvJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawablePadding="10dp"
+                    android:text="Meslek"
+                    android:textSize="18sp"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:drawableStartCompat="@drawable/ic_work" />
+
+                <include layout="@layout/gray_line" />
+
+                <TextView
+                    android:id="@+id/tvJobError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Lütfen mesleğinizi seçiniz."
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+
+                <!--Relation-->
+                <TextView
+                    android:id="@+id/tvRelation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawablePadding="10dp"
+                    android:text="İlişki durumu"
+                    android:textSize="18sp"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:drawableStartCompat="@drawable/ic_relation" />
+
+                <include layout="@layout/gray_line" />
+
+                <TextView
+                    android:id="@+id/tvRelationError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Lütfen ilişki durumunuzu seçiniz."
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+
+                <!--Age-->
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:drawablePadding="10dp"
+                    android:text="Yaş"
+                    android:textSize="18sp"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:drawableStartCompat="@drawable/ic_age" />
+
+                <include layout="@layout/gray_line" />
+
+                <TextView
+                    android:id="@+id/tvAgeError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Lütfen yaşınızı seçiniz."
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:gravity="start"
+                    android:hint="Eklemek istediğiniz ekstra bilgi varsa bu alana yazabilirsiniz."
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:textColorHint="@color/gray" />
+
+                <Button
+                    android:id="@+id/btnShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="Paylaş" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

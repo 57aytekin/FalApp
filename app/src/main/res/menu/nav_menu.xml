@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_tab_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        app:showAsAction="always"
+        android:title="Fal Yorumla"/>
+    <item
+        android:id="@+id/nav_tab_add"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:title="Ekle"/>
+
+    <item
+        android:id="@+id/nav_tab_comments"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_coffee"
+        android:title="Yorumlar"/>
+
+    <item
+        android:id="@+id/nav_tab_profile"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_user"
+        android:menuCategory="secondary"
+        android:title="Profil"/>
+</menu>
