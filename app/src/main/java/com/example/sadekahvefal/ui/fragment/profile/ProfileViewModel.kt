@@ -45,4 +45,22 @@ class ProfileViewModel @Inject constructor(
             }
         )
     }
+
+    fun updateProfile(userId: Int, userName : String, firstName : String, lastName : String, image : String) = viewModelScope.launch {
+        _onJobList.value = ApiState.Loading
+        profileRepository.updateProfile(userId, userName, firstName, lastName, image, viewModelScope,
+            onSuccess = {
+                loadingDetection.postValue(false)
+                if (it.isSuccessful!!) {
+                    _onJobList.value = ApiState.SuccessMessage(it.message)
+                } else {
+                    _onJobList.value = ApiState.Failure(it.message)
+                }
+            },
+            onErrorAction = {
+                loadingDetection.postValue(false)
+                _onJobList.value = ApiState.Failure(it)
+            }
+        )
+    }
 }

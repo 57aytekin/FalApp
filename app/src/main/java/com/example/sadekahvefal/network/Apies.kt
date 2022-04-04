@@ -94,4 +94,13 @@ interface Apies {
         @Field("user_id") userId: Int
     ) : UserProfileResponse
 
+    @FormUrlEncoded
+    @POST("update_user.php")
+    suspend fun updateUserProfile(
+        @Field("user_id") userId :  Int,
+        @Field("user_name") user_name :  String,
+        @Field("user_first_name") user_first_name :  String,
+        @Field("user_last_name") user_last_name :  String,
+        @Field("image") image : String
+    ) : StaticResponse
 }

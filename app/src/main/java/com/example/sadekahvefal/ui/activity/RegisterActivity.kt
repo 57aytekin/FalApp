@@ -131,16 +131,18 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, UsersViewModel>()
         }
     }
 
-    private fun textInputSettings(txtInput: TextInputLayout, validationMessage: String) {
-        txtInput.error = validationMessage
-        txtInput.setErrorTextColor(ColorStateList.valueOf(Color.RED))
-        txtInput.requestFocus()
-    }
-    private fun checkTurkishCharacter(value: String): Boolean {
-        return (value.contains(" ") || value.contains("ş") || value.contains("Ş") || value.contains("Ç")
-                || value.contains("ç") || value.contains("Ğ") || value.contains("ğ") || value.contains("ş")
-                || value.contains("ö") || value.contains("Ö") || value.contains("ü") || value.contains("Ü")
-                || value.contains("ı") || value.contains("İ"))
+    companion object {
+        fun checkTurkishCharacter(value: String): Boolean {
+            return (value.contains(" ") || value.contains("ş") || value.contains("Ş") || value.contains("Ç")
+                    || value.contains("ç") || value.contains("Ğ") || value.contains("ğ") || value.contains("ş")
+                    || value.contains("ö") || value.contains("Ö") || value.contains("ü") || value.contains("Ü")
+                    || value.contains("ı") || value.contains("İ"))
+        }
+        fun textInputSettings(txtInput: TextInputLayout, validationMessage: String) {
+            txtInput.error = validationMessage
+            txtInput.setErrorTextColor(ColorStateList.valueOf(Color.RED))
+            txtInput.requestFocus()
+        }
     }
 
     override fun navigateFragment(params: NavigateFragmentParams) {

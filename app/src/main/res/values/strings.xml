@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sade Kahve Fal</string>
+    <string name="app_name">Sade Kahve Falı</string>
     <!--Register Control-->
     <string name="valid_user_name">Kullanıcı adınız 5 karakterden küçük, 20 karakterden büyük olamaz</string>
     <string name="fill_fields">Lütfen tüm alanları doldurunuz</string>

@@ -80,6 +80,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
             R.id.homeFragment -> {
                 finish()
             }
+            R.id.editProfileFragment -> {
+                navController!!.navigate(R.id.profileFragment)
+            }
         }
     }
 }

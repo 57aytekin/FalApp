@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sadekahvefal">
+    package="com.example.sadekahvefal" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SadeKahveFal"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".ui.activity.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.editprofile.EditProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.commented.CommentedActivity"
             android:exported="false" />
@@ -21,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

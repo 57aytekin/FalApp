@@ -51,20 +51,20 @@ class HomeRecyclerViewAdapter(private val clickListeners: ClickListeners) :
         when (holder) {
             is HomeRecyclerViewHolder.PostViewHolder -> {
                 val postHolder : HomeRecyclerViewHolder.PostViewHolder = holder
-                /*if (item?.paths!!.isNotEmpty())
-                    postHolder.userImage.setImageBitmap(convertStringToBitmap(item.paths))*/
+                if (!item?.paths!!.isNullOrEmpty())
+                    Glide.with(postHolder.context).load(item.paths).into(postHolder.userImage)
                 when {
-                    item?.diff_date!!.month > 0 ->  holder.tvPostDate.text = item.diff_date.month.toString()+ " ay önce"
+                    item.diff_date!!.month > 0 ->  holder.tvPostDate.text = item.diff_date.month.toString()+ " ay önce"
                     item.diff_date.day > 0 ->  holder.tvPostDate.text = item.diff_date.day.toString()+ " gün önce"
                     item.diff_date.hour > 0 -> holder.tvPostDate.text = item.diff_date.hour.toString()+ " saat önce"
                     item.diff_date.minute > 0 -> holder.tvPostDate.text = item.diff_date.minute.toString()+ " dakika önce"
                     item.diff_date.second > 0 -> holder.tvPostDate.text = "biraz önce"
                 }
-                postHolder.userFirstName.text = item?.first_name
-                postHolder.userName.text = item?.user_name
-                Glide.with(postHolder.context).load(item?.image_1).into(postHolder.image1)
-                Glide.with(postHolder.context).load(item?.image_2).into(postHolder.image2)
-                Glide.with(postHolder.context).load(item?.image_3).into(postHolder.image3)
+                postHolder.userFirstName.text = item.first_name
+                postHolder.userName.text = item.user_name
+                Glide.with(postHolder.context).load(item.image_1).into(postHolder.image1)
+                Glide.with(postHolder.context).load(item.image_2).into(postHolder.image2)
+                Glide.with(postHolder.context).load(item.image_3).into(postHolder.image3)
                 postHolder.btnComment.setOnClickListener { clickListeners.onButtonCLick(item!!) }
             }
             is HomeRecyclerViewHolder.TopUserViewHolder -> {

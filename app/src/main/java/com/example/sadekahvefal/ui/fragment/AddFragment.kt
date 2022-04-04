@@ -26,15 +26,11 @@ import java.lang.Byte.decode
 import java.util.*
 import javax.inject.Inject
 
-private const val IMG_RESULT = 777
 
 @AndroidEntryPoint
 class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomSheetClickListener {
-    // TODO: Rename and change types of parameters
     @Inject
     lateinit var prefUtils: PrefUtils
-    private var param1: String? = null
-    private var param2: String? = null
     override val viewModel : PostViewModel by viewModels()
     private var jobList = mutableListOf<String>()
     lateinit var resultLauncher : ActivityResultLauncher<Intent>

@@ -19,4 +19,11 @@ class ProfileRepository @Inject constructor (
         onSuccess = { onSuccess(it) } ,
         onErrorAction = { onErrorAction(it) }
     )
+    suspend fun updateProfile(
+        userId: Int, userName : String, userFirstName : String, lastName : String, image : String,
+        scope: CoroutineScope, onSuccess: (StaticResponse) -> Unit, onErrorAction: (String?) -> Unit
+    ) = sendRequest(scope, client = {apiClientImpl.apiCollect.updateUserProfile(userId, userName, userFirstName, lastName, image)},
+        onSuccess = {onSuccess(it)} ,
+        onErrorAction = {onErrorAction(it)}
+    )
 }

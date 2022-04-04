@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sadekahvefal.R
 import com.example.sadekahvefal.databinding.TopCommentersItemRowBinding
 import com.example.sadekahvefal.model.HomeRecyclerViewItem
@@ -44,19 +45,16 @@ class TopUserAdapter(): RecyclerView.Adapter<TopUserAdapter.UserHolder>() {
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
         val user = differ.currentList[position]
-        holder.bind(user)
+        holder.bind(user, holder)
     }
 
     inner class UserHolder(private val binding: TopCommentersItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(user : HomeRecyclerViewItem.User) = binding.run {
-            /*if (user.paths!!.isNotEmpty()) {
-                val byteArray = Base64.decode(user.paths, 0)
-                val bitmap = Converters().toBitmap(byteArray)!!
-                ivUserTopImage.setImageBitmap(bitmap)
-            }*/
+        fun bind(user : HomeRecyclerViewItem.User, holder : UserHolder) = binding.run {
+            if (!user.paths!!.isNullOrEmpty())
+                Glide.with(holder.itemView.context).load(user.paths).into(ivUserTopImage)
             tvUserFirstLastName.text = user.first_name + " " + user.last_name
             tvTopUserName.text = "@"+user.user_name
         }

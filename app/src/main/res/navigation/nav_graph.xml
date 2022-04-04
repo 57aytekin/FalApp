@@ -19,10 +19,36 @@
         android:id="@+id/profileFragment"
         android:name="com.example.sadekahvefal.ui.fragment.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/commentListFragment"
         android:name="com.example.sadekahvefal.ui.fragment.comment.CommentListFragment"
         android:label="fragment_comment_list"
         tools:layout="@layout/fragment_comment_list" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.sadekahvefal.ui.fragment.profile.edit_profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument
+            android:name="lastName"
+            app:argType="string" />
+        <argument
+            android:name="path"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
