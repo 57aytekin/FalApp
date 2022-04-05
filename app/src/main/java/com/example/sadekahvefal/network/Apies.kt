@@ -41,7 +41,8 @@ interface Apies {
         @Field("job_id") jobId: Int,
         @Field("relation_id") relationId: Int,
         @Field("age") age: Int,
-        @Field("ekstra_infromation") ekstraInfromation: String
+        @Field("ekstra_infromation") ekstraInfromation: String,
+        @Field("gold") gold: Int
     ) : Response<StaticResponse>
 
     @GET("get_post.php")
@@ -50,8 +51,11 @@ interface Apies {
         @Query("row_per_page") rowPerPage : Int,
     ) : PostResponse
 
-    @GET("get_top_users.php")
-    suspend fun getTopUsers() : TopUserResponse
+    @FormUrlEncoded
+    @POST("get_top_users.php")
+    suspend fun getTopUsers(
+        @Field("id") userId : Int
+    ) : TopUserResponse
 
     @FormUrlEncoded
     @POST("save_comment.php")
@@ -98,9 +102,16 @@ interface Apies {
     @POST("update_user.php")
     suspend fun updateUserProfile(
         @Field("user_id") userId :  Int,
-        @Field("user_name") user_name :  String,
+        @Field("email") email :  String,
         @Field("user_first_name") user_first_name :  String,
         @Field("user_last_name") user_last_name :  String,
         @Field("image") image : String
     ) : StaticResponse
+
+    @FormUrlEncoded
+    @POST("get_home_item.php")
+    suspend fun getHomeItem(
+        @Field("id") userId: Int
+    ) : HomeResponse
+
 }

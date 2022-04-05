@@ -43,11 +43,11 @@ class PostViewModel @Inject constructor(
     }
 
 
-    fun savePost(post : HomeRecyclerViewItem.Post,name1 : String, name2 : String, name3 : String,) =
+    fun savePost(post : HomeRecyclerViewItem.Post,name1 : String, name2 : String, name3 : String, gold : Int) =
         viewModelScope.launch {
         _onJobList.value = ApiState.Loading
         postRepository.savePost(
-            name1, name2, name3,
+            name1, name2, name3, gold,
             post,
             scope = viewModelScope,
             onSuccess = {

@@ -267,6 +267,7 @@
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etEkstraInf"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_marginStart="30dp"
@@ -277,15 +278,46 @@
                     android:inputType="textMultiLine|textCapSentences"
                     android:textColorHint="@color/gray" />
 
-                <Button
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/btnShare"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
-                    android:text="Paylaş" />
+                    android:background="@drawable/shape_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Paylaş   ("
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/ic_coin" />
+
+                    <TextView
+                        android:id="@+id/tvUserGold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:text="5 )"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>

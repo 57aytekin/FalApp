@@ -12,6 +12,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.sadekahvefal.R
 import com.example.sadekahvefal.base.BaseFragment
 import com.example.sadekahvefal.databinding.FragmentAddBinding
@@ -19,10 +21,12 @@ import com.example.sadekahvefal.model.HomeRecyclerViewItem
 import com.example.sadekahvefal.ui.PostViewModel
 import com.example.sadekahvefal.ui.fragment.bottomSheet.UserInfBottomSheet
 import com.example.sadekahvefal.utils.*
+import com.example.sadekahvefal.utils.Constant.USERGOLD
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.io.ByteArrayOutputStream
 import java.lang.Byte.decode
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -31,6 +35,7 @@ import javax.inject.Inject
 class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomSheetClickListener {
     @Inject
     lateinit var prefUtils: PrefUtils
+    private var navController: NavController? = null
     override val viewModel : PostViewModel by viewModels()
     private var jobList = mutableListOf<String>()
     lateinit var resultLauncher : ActivityResultLauncher<Intent>
@@ -50,6 +55,8 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
     override fun getViewBinding() = FragmentAddBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {
+        navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+        binding.appbar.tvCoin.text = prefUtils.getUserGold().toString()
 
         val genderBottomSheet = UserInfBottomSheet(this)
         genderList = resources.getStringArray(R.array.gender_array).asList()
@@ -68,19 +75,27 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
         }
 
         binding.btnShare.setOnClickListener {
-            if (validShare()) {
-                val post = HomeRecyclerViewItem.Post(image_1 = stringImage1!!, image_2 = stringImage2!!, image_3 = stringImage3!!,
-                    user_id = prefUtils.getUserId(), gender_id = getItemId(genderList, binding.tvGender.text.toString()),
-                    job_id = getItemId(jobList, binding.tvJob.text.toString()),
-                    relation_id = getItemId(relationList, binding.tvRelation.text.toString()),
-                    age = binding.tvAge.text.toString().toInt(), ekstra_infromation = "" )
+            val currentGold = prefUtils.getUserGold()
+            if (currentGold >= 5) {
+                val updatedGold = currentGold -5
+                prefUtils.save(USERGOLD, updatedGold)
+                if (validShare()) {
+                    val post = HomeRecyclerViewItem.Post(image_1 = stringImage1!!, image_2 = stringImage2!!, image_3 = stringImage3!!,
+                        user_id = prefUtils.getUserId(), gender_id = getItemId(genderList, binding.tvGender.text.toString()),
+                        job_id = getItemId(jobList, binding.tvJob.text.toString()),
+                        relation_id = getItemId(relationList, binding.tvRelation.text.toString()),
+                        age = binding.tvAge.text.toString().toInt(), ekstra_infromation = binding.etEkstraInf.toString() )
 
-                val rnds = (0..1000).random()
-                val name1 = prefUtils.getUserName()+"1"+rnds.toString()
-                val name2 = prefUtils.getUserName()+"2"+rnds.toString()
-                val name3 = prefUtils.getUserName()+"3"+rnds.toString()
-                viewModel.savePost(post, name1, name2, name3)
+                    val rnds = (0..1000).random()
+                    val name1 = prefUtils.getUserName()+"1"+rnds.toString()
+                    val name2 = prefUtils.getUserName()+"2"+rnds.toString()
+                    val name3 = prefUtils.getUserName()+"3"+rnds.toString()
+                    viewModel.savePost(post, name1, name2, name3, updatedGold)
+                }
+            }else {
+                showDialog()
             }
+
         }
 
         binding.cvCoffeeImage1.setOnClickListener {
@@ -230,8 +245,24 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                         binding.progressAddFragment.visibility = View.GONE
                         binding.btnShare.isClickable = true
                         Toast.makeText(requireContext(), it.successMessage, Toast.LENGTH_SHORT).show()
+                        navController?.navigate(R.id.homeFragment)
                     }
                 }
+            }
+        }
+    }
+    private fun showDialog() {
+        val dialog = CustomDialog(requireContext(), "",null, null)
+        dialog.show()
+        dialog.apply {
+            setYesListener {
+                //Video açılacak ve gold update edilecek.
+                Toast.makeText(requireContext(), "open video and update coin", Toast.LENGTH_SHORT)
+                    .show()
+                dismiss()
+            }
+            setNoListener {
+                dismiss()
             }
         }
     }

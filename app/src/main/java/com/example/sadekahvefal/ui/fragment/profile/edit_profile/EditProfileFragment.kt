@@ -3,6 +3,7 @@ package com.example.sadekahvefal.ui.fragment.profile.edit_profile
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -42,7 +43,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
         navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment)
         binding.etEditName.setText(args.firstName)
         binding.etEditLastName.setText(args.lastName)
-        binding.etEditUserName.setText(args.userName)
+        binding.etEditUserMail.setText(args.email)
 
         if (!args.path.isNullOrEmpty()) {
             Glide.with(this).load(args.path).into(binding.ivEditProfilePhoto)
@@ -54,11 +55,11 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
         }
         binding.appbar.rlConfirm.setOnClickListener {
             //Call api
-            val userName = binding.etEditUserName.text?.trim().toString()
+            val email = binding.etEditUserMail.text?.trim().toString()
             val lastName = binding.etEditLastName.text?.trim().toString()
             val firstName = binding.etEditName.text?.trim().toString()
-            if (checkValidation(userName,firstName,lastName)){
-                viewModel.updateProfile(prefUtils.getUserId(), userName, firstName, lastName, stringImage1 ?: "null")
+            if (checkValidation(email,firstName,lastName)){
+                viewModel.updateProfile(prefUtils.getUserId(), email, firstName, lastName, stringImage1 ?: "null")
             }
         }
 
@@ -106,23 +107,19 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
         //startActivityForResult(intent, IMG_RESULT)
     }
     private fun checkValidation(
-        userName: String,
+        email: String,
         firstName: String,
         lastName: String
     ): Boolean {
-        if (userName.isEmpty() || firstName.isEmpty() || lastName.isEmpty() ) {
+        if (email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() ) {
             Toast.makeText(requireContext(), getString(R.string.fill_fields), Toast.LENGTH_SHORT).show()
             return false
         }
-        if (checkTurkishCharacter(userName)) {
-            binding.containerEditUserName.error = "Kullanıcı adında türkçe karakter(ı,ş,ç,ö,ü) ve boşluk olamaz "
-            return false
-        }
-        if (userName.length < 5) {
-            textInputSettings(binding.containerEditUserName, getString(R.string.valid_user_name))
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            textInputSettings(binding.containerEditUserMail, getString(R.string.valid_mail))
             return false
         } else {
-            binding.containerEditUserName.isErrorEnabled = false
+            binding.containerEditUserMail.isErrorEnabled = false
         }
         if (firstName.length < 3) {
             textInputSettings(binding.containerEditName, getString(R.string.valid_first_name))

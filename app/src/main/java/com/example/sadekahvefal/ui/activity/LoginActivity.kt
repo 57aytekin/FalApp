@@ -60,6 +60,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, UsersViewModel>() {
                     is ApiState.Success -> {
                         prefUtils.save(Constant.USERNAME, it.data.login!!.user_name)
                         prefUtils.save(Constant.USERID, it.data.login.user_id!!)
+                        prefUtils.save(Constant.USERGOLD, it.data.login.gold!!)
                         Toast.makeText(this@LoginActivity, it.data.message, Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()

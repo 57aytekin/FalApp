@@ -27,6 +27,7 @@ class PostRepository @Inject constructor(private val apiServiceImp : APIClientIm
         name1 : String,
         name2 : String,
         name3 : String,
+        gold : Int,
         post: HomeRecyclerViewItem.Post,
         scope: CoroutineScope,
         onSuccess: ((StaticResponse) -> Unit),
@@ -37,7 +38,7 @@ class PostRepository @Inject constructor(private val apiServiceImp : APIClientIm
             apiServiceImp.apiCollect
                 .savePost(
                     post.image_1,name1, post.image_2, name2, post.image_3, name3, post.user_id,
-                    post.gender_id!!, post.job_id!!, post.relation_id!!, post.age!!, post.ekstra_infromation!!)
+                    post.gender_id!!, post.job_id!!, post.relation_id!!, post.age!!, post.ekstra_infromation!!, gold)
                  },
         onSuccess = {
             onSuccess(it.body()!!)

@@ -13,3 +13,6 @@ interface ClickListeners {
 interface CommentListListener {
     fun onItemCLick(comment: Comment)
 }
+interface UpdateBadge {
+    fun updateBadgeCount(count : Int)
+}

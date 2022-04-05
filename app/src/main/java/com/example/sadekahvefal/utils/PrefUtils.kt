@@ -150,5 +150,8 @@ class PrefUtils {
     fun getUserId(): Int {
         return preferences.getInt(Constant.USERID,-1)
     }
+    fun getUserGold(): Int {
+        return preferences.getInt(Constant.USERGOLD,-1)
+    }
 
 }

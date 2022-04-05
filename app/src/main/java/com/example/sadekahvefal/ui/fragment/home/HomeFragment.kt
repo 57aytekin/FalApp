@@ -1,4 +1,4 @@
-package com.example.sadekahvefal.ui.fragment
+package com.example.sadekahvefal.ui.fragment.home
 
 import android.content.Intent
 import android.widget.Toast
@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sadekahvefal.base.BaseFragment
 import com.example.sadekahvefal.databinding.FragmentHomeBinding
 import com.example.sadekahvefal.model.HomeRecyclerViewItem
+import com.example.sadekahvefal.ui.activity.MainActivity
 import com.example.sadekahvefal.ui.activity.comment.CommentActivity
-import com.example.sadekahvefal.ui.fragment.home.HomeRecyclerViewAdapter
-import com.example.sadekahvefal.ui.fragment.home.HomeViewModel
 import com.example.sadekahvefal.utils.ApiState
 import com.example.sadekahvefal.utils.ClickListeners
 import com.example.sadekahvefal.utils.Constant.CommentItem.age
@@ -23,12 +22,15 @@ import com.example.sadekahvefal.utils.Constant.CommentItem.relation
 import com.example.sadekahvefal.utils.Constant.CommentItem.userName
 import com.example.sadekahvefal.utils.Constant.CommentItem.user_id
 import com.example.sadekahvefal.utils.Constant.CommentItem.work
+import com.example.sadekahvefal.utils.PrefUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickListeners {
-
+    @Inject
+    lateinit var prefUtils: PrefUtils
 
     override val viewModel: HomeViewModel by viewModels()
     private val homeRecyclerViewAdapter = HomeRecyclerViewAdapter(this)
@@ -36,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickLi
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {
+        binding.appbar.tvCoin.text = prefUtils.getUserGold().toString()
 
         lifecycleScope.launchWhenCreated {
             viewModel.onTopUserList.collect {
@@ -52,7 +55,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickLi
                     }
                     ApiState.Loading -> { }
                     is ApiState.Success -> {
-                        homeRecyclerViewAdapter.updateUserTopList(it.data!!)
+                        homeRecyclerViewAdapter.updateUserTopList(it.data!!.top_user)
+                        (activity as MainActivity?)?.updateBadge(it.data.badgeCount)
                     }
 
                     is ApiState.SuccessMessage  -> Toast.makeText(

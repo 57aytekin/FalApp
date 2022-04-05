@@ -2,7 +2,6 @@ package com.example.sadekahvefal.ui.fragment.comment
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
@@ -10,23 +9,16 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.sadekahvefal.base.BaseFragment
 import com.example.sadekahvefal.databinding.FragmentCommentListBinding
 import com.example.sadekahvefal.model.Comment
+import com.example.sadekahvefal.ui.activity.MainActivity
 import com.example.sadekahvefal.ui.activity.comment.CommentViewModel
 import com.example.sadekahvefal.ui.activity.commented.CommentedActivity
-import com.example.sadekahvefal.utils.ApiState
-import com.example.sadekahvefal.utils.CommentListListener
-import com.example.sadekahvefal.utils.Constant
-import com.example.sadekahvefal.utils.PrefUtils
+import com.example.sadekahvefal.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,18 +34,8 @@ class CommentListFragment : BaseFragment<FragmentCommentListBinding, CommentView
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onFragmentCreated() {
+        binding.appbar.tvCoin.text = prefUtils.getUserGold().toString()
         viewModel.getComment(prefUtils.getUserId())
-        /*CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val commentList = viewModel.getComment.await()
-                commentList.observe(viewLifecycleOwner) { liste ->
-                    binding.tvEmpty.visibility = View.GONE
-                    commentAdapter.submitList(liste.comment_list)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }*/
         mutableList.observe(viewLifecycleOwner){list ->
             commentAdapter.submitList(list)
             commentAdapter.notifyDataSetChanged()
@@ -62,6 +44,7 @@ class CommentListFragment : BaseFragment<FragmentCommentListBinding, CommentView
         }
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                var badgeCount = 0
                 val data: Intent? = result.data
                 val commentId = data?.getIntExtra("comment_id",-1)
                 val isShowing = data?.getIntExtra("isShowing",-1)
@@ -71,8 +54,10 @@ class CommentListFragment : BaseFragment<FragmentCommentListBinding, CommentView
                         if (isShowing != -1) it.is_showing = isShowing!!
                         if (rating != -1) it.rate = rating!!
                     }
+                    if (it.is_showing == 0) badgeCount++
                 }
                 mutableList.postValue(commentList)
+                (activity as MainActivity?)?.updateBadge(badgeCount)
             }
         }
         commentAdapter = CommentListAdapter(this)

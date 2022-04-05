@@ -44,7 +44,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         binding.ivProfileEdit.setOnClickListener {
             val action = ProfileFragmentDirections.
             actionProfileFragmentToEditProfileFragment(
-                userInf.user_id!!, userInf.user_name, userInf.first_name, userInf.last_name!!, userInf.paths!!
+                userInf.email, userInf.user_name, userInf.first_name, userInf.last_name!!, userInf.paths!!
             )
             navController?.navigate(action)
         }

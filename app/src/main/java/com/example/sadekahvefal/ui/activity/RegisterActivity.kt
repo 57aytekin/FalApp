@@ -12,13 +12,18 @@ import com.example.sadekahvefal.databinding.ActivityRegisterBinding
 import com.example.sadekahvefal.model.HomeRecyclerViewItem
 import com.example.sadekahvefal.ui.UsersViewModel
 import com.example.sadekahvefal.utils.ApiState
+import com.example.sadekahvefal.utils.Constant
 import com.example.sadekahvefal.utils.NavigateFragmentParams
+import com.example.sadekahvefal.utils.PrefUtils
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding, UsersViewModel>(){
+    @Inject
+    lateinit var prefUtils: PrefUtils
 
     override val viewModel: UsersViewModel by viewModels()
     override fun getViewBinding() = ActivityRegisterBinding.inflate(layoutInflater)
@@ -46,6 +51,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, UsersViewModel>()
                         viewModel.loadingDetection.postValue(true)
                     }
                     is ApiState.Success -> {
+                        prefUtils.save(Constant.USERNAME, it.data.login!!.user_name)
+                        prefUtils.save(Constant.USERID, it.data.login.user_id!!)
+                        prefUtils.save(Constant.USERGOLD, it.data.login.gold!!)
                         Toast.makeText(this@RegisterActivity, it.data.message, Toast.LENGTH_SHORT).show()
                     }
                 }
