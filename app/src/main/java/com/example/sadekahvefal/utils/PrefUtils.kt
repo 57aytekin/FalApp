@@ -153,5 +153,8 @@ class PrefUtils {
     fun getUserGold(): Int {
         return preferences.getInt(Constant.USERGOLD,-1)
     }
+    fun getIsAdmin(): Int {
+        return preferences.getInt(Constant.IS_ADMIN,0)
+    }
 
 }

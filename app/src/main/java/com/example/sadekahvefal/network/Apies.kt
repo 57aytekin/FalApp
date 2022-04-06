@@ -114,4 +114,18 @@ interface Apies {
         @Field("id") userId: Int
     ) : HomeResponse
 
+    @GET("get_confirm_post.php")
+    suspend fun getConfirmPost(
+        @Query("page") page : Int,
+        @Query("row_per_page") rowPerPage : Int,
+    ) : PostResponse
+
+    @FormUrlEncoded
+    @POST("update_post_confirmed.php")
+    suspend fun updateIsConfirmed(
+        @Field("post_id") postId : Int,
+        @Field("is_confirm") isConfirm : Int
+    ): StaticResponse
+
+
 }

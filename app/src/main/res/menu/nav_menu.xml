@@ -7,6 +7,11 @@
         app:showAsAction="always"
         android:title="Fal Yorumla"/>
     <item
+        android:id="@+id/nav_tab_admin"
+        android:icon="@drawable/ic_baseline_star_24"
+        app:showAsAction="always"
+        android:title="Admin"/>
+    <item
         android:id="@+id/nav_tab_add"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_add_circle_outline_24"

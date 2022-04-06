@@ -20,6 +20,7 @@ sealed class HomeRecyclerViewItem {
         val who_is_talking : Int? = null,
         val register_date : String? = null,
         val is_deleted : Int? = null,
+        val is_admin : Int? = null,
         val score : Int? = null,
         val gold : Int? = null,
         val comment_count : Int? = null,

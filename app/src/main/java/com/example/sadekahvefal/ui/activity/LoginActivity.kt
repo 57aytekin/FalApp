@@ -61,6 +61,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, UsersViewModel>() {
                         prefUtils.save(Constant.USERNAME, it.data.login!!.user_name)
                         prefUtils.save(Constant.USERID, it.data.login.user_id!!)
                         prefUtils.save(Constant.USERGOLD, it.data.login.gold!!)
+                        prefUtils.save(Constant.IS_ADMIN, it.data.login.is_admin!!)
                         Toast.makeText(this@LoginActivity, it.data.message, Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()

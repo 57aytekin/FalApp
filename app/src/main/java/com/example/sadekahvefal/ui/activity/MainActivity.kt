@@ -31,7 +31,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
         mutableBadgeCount.observe(this){count ->
             if (count > 0) binding.bottomNavigation.getOrCreateBadge(R.id.nav_tab_comments).number = count
             else binding.bottomNavigation.removeBadge(R.id.nav_tab_comments)
-            //prefUtils.save(BADGECOUNT, count)
+        }
+        if (prefUtils.getIsAdmin() == 0) {
+            binding.bottomNavigation.menu.removeItem(R.id.nav_tab_admin)
         }
 
     }
@@ -59,6 +61,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
                 }
                 R.id.nav_tab_profile -> {
                     navController?.navigate(R.id.profileFragment)
+                    true
+                }
+                R.id.nav_tab_admin -> {
+                    navController?.navigate(R.id.adminFragment)
                     true
                 }
                 else -> {

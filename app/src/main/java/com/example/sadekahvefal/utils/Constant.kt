@@ -7,6 +7,7 @@ object Constant {
     const val USERNAME = "UserName"
     const val USERID = "UserId"
     const val USERGOLD = "UserGold"
+    const val IS_ADMIN = "is_admin"
 
     object CommentItem {
         const val image1 = "image1"
