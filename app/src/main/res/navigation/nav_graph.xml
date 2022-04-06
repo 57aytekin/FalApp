@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.home.HomeFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.AddFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.profile.ProfileFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -26,12 +26,12 @@
     </fragment>
     <fragment
         android:id="@+id/commentListFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.comment.CommentListFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.comment.CommentListFragment"
         android:label="fragment_comment_list"
         tools:layout="@layout/fragment_comment_list" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.profile.edit_profile.EditProfileFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.profile.edit_profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <argument
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/adminFragment"
-        android:name="com.example.sadekahvefal.ui.fragment.admin.AdminFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.admin.AdminFragment"
         android:label="fragment_admin"
         tools:layout="@layout/fragment_admin" />
 </navigation>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "342256822023",
+    "project_id": "sade-fal",
+    "storage_bucket": "sade-fal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342256822023:android:f7c10e86fe2d9204b687a2",
+        "android_client_info": {
+          "package_name": "com.falApp.sadekahvefal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342256822023-q8e8c83io2h7eq19auu5l895koeo6iku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8g4NnuLPNbycHZSCBXbK33s5HDZkmCaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342256822023-q8e8c83io2h7eq19auu5l895koeo6iku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
