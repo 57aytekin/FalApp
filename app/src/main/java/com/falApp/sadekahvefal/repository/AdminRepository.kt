@@ -21,10 +21,10 @@ class AdminRepository @Inject constructor(
     )
 
     suspend fun updateIsConfirm(
-        postId : Int, isConfirm : Int, token : String, message : String, scope: CoroutineScope, onSuccess: (StaticResponse) -> Unit, onErrorAction: (String?) -> Unit
+        postId : Int, isConfirm : Int, token : String, scope: CoroutineScope, onSuccess: (StaticResponse) -> Unit, onErrorAction: (String?) -> Unit
     ) = sendRequest(
         scope,
-        client = { apiClientImpl.apiCollect.updateIsConfirmed(postId, isConfirm, token, message) },
+        client = { apiClientImpl.apiCollect.updateIsConfirmed(postId, isConfirm, token) },
         onSuccess = { onSuccess(it) } ,
         onErrorAction = { onErrorAction(it) }
     )

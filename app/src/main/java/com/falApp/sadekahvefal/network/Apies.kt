@@ -63,7 +63,8 @@ interface Apies {
         @Field("post_id") postId: Int,
         @Field("commentor_id") commentorId: Int,
         @Field("post_owner_id") postOwnerId: Int,
-        @Field("comment") comment: String
+        @Field("comment") comment: String,
+        @Field("token") token: String
     ) : Response<StaticResponse>
 
     @FormUrlEncoded
@@ -125,8 +126,7 @@ interface Apies {
     suspend fun updateIsConfirmed(
         @Field("post_id") postId : Int,
         @Field("is_confirm") isConfirm : Int,
-        @Field("token") token : String,
-        @Field("message") message : String
+        @Field("token") token : String
     ): StaticResponse
 
     @FormUrlEncoded

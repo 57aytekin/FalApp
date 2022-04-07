@@ -47,10 +47,12 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
     var genderList = listOf<String>()
     var relationList = listOf<String>()
     var ageLit = listOf<String>()
+    private var currentGold = 0
 
     override fun getViewBinding() = FragmentAddBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {
+        currentGold = prefUtils.getUserGold()
         navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment)
         binding.appbar.tvCoin.text = prefUtils.getUserGold().toString()
 
@@ -71,10 +73,8 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
         }
 
         binding.btnShare.setOnClickListener {
-            val currentGold = prefUtils.getUserGold()
             if (currentGold >= 5) {
                 val updatedGold = currentGold -5
-                prefUtils.save(USERGOLD, updatedGold)
                 if (validShare()) {
                     val post = HomeRecyclerViewItem.Post(image_1 = stringImage1!!, image_2 = stringImage2!!, image_3 = stringImage3!!,
                         user_id = prefUtils.getUserId(), gender_id = getItemId(genderList, binding.tvGender.text.toString()),
@@ -238,6 +238,8 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                         })
                     }
                     is ApiState.SuccessMessage -> {
+                        //update local gold
+                        prefUtils.save(USERGOLD, currentGold-5)
                         binding.progressAddFragment.visibility = View.GONE
                         binding.btnShare.isClickable = true
                         Toast.makeText(requireContext(), it.successMessage, Toast.LENGTH_SHORT).show()

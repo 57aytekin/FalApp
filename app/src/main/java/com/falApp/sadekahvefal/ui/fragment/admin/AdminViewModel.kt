@@ -43,10 +43,10 @@ class AdminViewModel @Inject constructor(
             )
         }
 
-    fun updatePostConfirmed(postId : Int, isConfirmed : Int, token : String, message : String) =
+    fun updatePostConfirmed(postId : Int, isConfirmed : Int, token : String) =
         viewModelScope.launch {
             _onJobList.value = ApiState.Loading
-            repository.updateIsConfirm(postId, isConfirmed, token, message,
+            repository.updateIsConfirm(postId, isConfirmed, token,
             scope =  viewModelScope,
             onSuccess = {
                 if (it.isSuccessful!!)

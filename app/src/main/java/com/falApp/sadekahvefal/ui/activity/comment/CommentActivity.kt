@@ -38,6 +38,7 @@ class CommentActivity : BaseActivity<ActivityCommentBinding, CommentViewModel>()
         val age = intent.getIntExtra(Constant.CommentItem.age, 0)
         val postId = intent.getIntExtra(Constant.CommentItem.post_id, 0)
         val userId = intent.getIntExtra(Constant.CommentItem.user_id, 0)
+        val token = intent.getStringExtra(Constant.CommentItem.user_token)
         val image1 = intent.getStringExtra(Constant.CommentItem.image1)
         val image2 = intent.getStringExtra(Constant.CommentItem.image2)
         val image3 = intent.getStringExtra(Constant.CommentItem.image3)
@@ -47,7 +48,7 @@ class CommentActivity : BaseActivity<ActivityCommentBinding, CommentViewModel>()
         binding.btnCommentShare.setOnClickListener {
             val comment = binding.etComment.text
             if (comment.isNotEmpty())
-                viewModel.saveComment(postId, prefUtils.getUserId(), userId, comment.toString())
+                viewModel.saveComment(postId, prefUtils.getUserId(), userId, comment.toString(), token!!)
             else
                 Toast.makeText(this, "Lütfen bir yorum giriniz", Toast.LENGTH_SHORT).show()
         }

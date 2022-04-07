@@ -21,6 +21,7 @@ import com.falApp.sadekahvefal.utils.Constant.CommentItem.post_id
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.relation
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.userName
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.user_id
+import com.falApp.sadekahvefal.utils.Constant.CommentItem.user_token
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.work
 import com.falApp.sadekahvefal.utils.PrefUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -90,6 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickLi
         intent.putExtra(age, post.age)
         intent.putExtra(post_id, post.post_id)
         intent.putExtra(user_id, post.user_id)
+        intent.putExtra(user_token, post.token)
         startActivity(intent)
     }
 

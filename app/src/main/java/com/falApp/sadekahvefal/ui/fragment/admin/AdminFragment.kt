@@ -48,9 +48,7 @@ class AdminFragment : BaseFragment<FragmentAdminBinding, AdminViewModel>(), Admi
 
     override fun isConfirmItem(postId: Int, isConfirm: Int, token: String) {
         //call api set post is_confirm value
-        val message = if (isConfirm == 1) "Paylaşımınız onaylandı."
-        else "Üzgünüz, Paylaşımınız onaylanmadı."
-        viewModel.updatePostConfirmed(postId, isConfirm,token,message)
+        viewModel.updatePostConfirmed(postId, isConfirm,token)
     }
 
 

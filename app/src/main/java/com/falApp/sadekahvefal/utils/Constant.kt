@@ -20,6 +20,7 @@ object Constant {
         const val work = "work"
         const val post_id = "post_id"
         const val user_id = "user_id"
+        const val user_token = "user_token"
     }
     object CommentedItem{
         const val commentId = "commentId"
