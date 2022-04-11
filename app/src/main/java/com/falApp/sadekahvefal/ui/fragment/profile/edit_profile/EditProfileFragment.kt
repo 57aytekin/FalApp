@@ -20,6 +20,7 @@ import com.falApp.sadekahvefal.databinding.FragmentEditProfileBinding
 import com.falApp.sadekahvefal.ui.activity.RegisterActivity.Companion.textInputSettings
 import com.falApp.sadekahvefal.ui.fragment.profile.ProfileViewModel
 import com.falApp.sadekahvefal.utils.*
+import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -98,11 +99,15 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
     }
 
     private fun selectImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        resultLauncher.launch(intent)
-        //startActivityForResult(intent, IMG_RESULT)
+        ImagePicker.with(requireActivity())
+            .compress(1024)
+            .crop()
+            .galleryOnly()
+            .cropSquare()
+            .maxResultSize(1080, 1080)
+            .createIntent {
+                resultLauncher.launch(it)
+            }
     }
     private fun checkValidation(
         email: String,

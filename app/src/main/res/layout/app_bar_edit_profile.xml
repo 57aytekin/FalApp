@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
                         android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_baseline_check_24" />
+                        android:src="@drawable/ic_white_check" />
 
                 </RelativeLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

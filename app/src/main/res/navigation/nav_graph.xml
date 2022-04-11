@@ -14,7 +14,11 @@
         android:id="@+id/addFragment"
         android:name="com.falApp.sadekahvefal.ui.fragment.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_sharedFalFragment"
+            app:destination="@id/sharedFalFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.falApp.sadekahvefal.ui.fragment.profile.ProfileFragment"
@@ -56,4 +60,13 @@
         android:name="com.falApp.sadekahvefal.ui.fragment.admin.AdminFragment"
         android:label="fragment_admin"
         tools:layout="@layout/fragment_admin" />
+    <fragment
+        android:id="@+id/sharedFalFragment"
+        android:name="com.falApp.sadekahvefal.ui.fragment.SharedFalFragment"
+        android:label="fragment_shared_fal"
+        tools:layout="@layout/fragment_shared_fal" >
+        <action
+            android:id="@+id/action_sharedFalFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

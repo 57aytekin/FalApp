@@ -294,8 +294,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Paylaş   ("
-                        android:textAllCaps="true"
+                        android:text="Falı Paylaş   ("
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />

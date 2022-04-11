@@ -9,15 +9,17 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="412dp"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/top_image"/>
+        android:src="@drawable/kahve_top"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_menu"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +28,10 @@
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adisyon Ne Kadar?"
-        android:fontFamily="@font/roboto_regular"
+        android:text="Sade Fal"
+        android:fontFamily="@font/dancing_script_bold"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="28sp"
         app:layout_constraintTop_toBottomOf="@id/image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -56,7 +58,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
                 android:textSize="20sp"
-                android:textColor="@color/blue"/>
+                android:textColor="@color/purple_500"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +119,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:background="@drawable/shape_button"
                 android:textColor="@color/white"
-                android:text="Login"/>
+                android:text="Giriş Yap"/>
 
             <TextView
                 android:layout_width="wrap_content"

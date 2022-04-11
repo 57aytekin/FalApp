@@ -47,7 +47,7 @@ class ProfileViewModel @Inject constructor(
 
     fun updateProfile(userId: Int, email : String, firstName : String, lastName : String, image : String) = viewModelScope.launch {
         _onJobList.value = ApiState.Loading
-        profileRepository.updateProfile(userId, email, firstName, lastName, image, viewModelScope,
+        profileRepository.updateProfile(userId, email, firstName, lastName, image, prefUtils.getUserName()!!, viewModelScope,
             onSuccess = {
                 loadingDetection.postValue(false)
                 if (it.isSuccessful!!) {

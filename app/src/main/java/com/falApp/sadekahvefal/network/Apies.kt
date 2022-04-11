@@ -106,7 +106,8 @@ interface Apies {
         @Field("email") email :  String,
         @Field("user_first_name") user_first_name :  String,
         @Field("user_last_name") user_last_name :  String,
-        @Field("image") image : String
+        @Field("image") image : String,
+        @Field("user_name") userName : String
     ) : StaticResponse
 
     @FormUrlEncoded

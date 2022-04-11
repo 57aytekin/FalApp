@@ -17,4 +17,9 @@
     <color name="dark_gray">#27262c</color>
 
     <color name="space_transparent">#00000000</color>
+
+    <!-- Here you can add color of your choice  -->
+
+    <color name="ucrop_color_statusbar">#FF6200EE</color>
+    <color name="ucrop_color_widget_active">#912020</color>
 </resources>

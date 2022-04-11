@@ -21,6 +21,7 @@ import com.falApp.sadekahvefal.ui.PostViewModel
 import com.falApp.sadekahvefal.ui.fragment.bottomSheet.UserInfBottomSheet
 import com.falApp.sadekahvefal.utils.*
 import com.falApp.sadekahvefal.utils.Constant.USERGOLD
+import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.util.*
@@ -80,9 +81,9 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                         user_id = prefUtils.getUserId(), gender_id = getItemId(genderList, binding.tvGender.text.toString()),
                         job_id = getItemId(jobList, binding.tvJob.text.toString()),
                         relation_id = getItemId(relationList, binding.tvRelation.text.toString()),
-                        age = binding.tvAge.text.toString().toInt(), ekstra_infromation = binding.etEkstraInf.toString() )
+                        age = binding.tvAge.text.toString().toInt(), ekstra_infromation = binding.etEkstraInf.text.toString() )
 
-                    val rnds = (0..1000).random()
+                    val rnds = (0..10000).random()
                     val name1 = prefUtils.getUserName()+"1"+rnds.toString()
                     val name2 = prefUtils.getUserName()+"2"+rnds.toString()
                     val name3 = prefUtils.getUserName()+"3"+rnds.toString()
@@ -140,28 +141,30 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 val path = data?.data
-                    //bitmap = MediaStore.Images.Media.getBitmap(contentResolver, path)
-                    when (clickedImage) {
-                        1 -> {
-                            bitmapCoffee1 = handleSamplingAndRotationBitmap(requireContext(), path!!)
-                            val bitmap1 = scaleDown(bitmapCoffee1!!, 700f, true )
-                            binding.ivCoffee1.setImageBitmap(bitmap1)
-                            stringImage1 = Converters().fromBitmap(bitmap1)
-                        }
-                        2 -> {
-                            bitmapCoffee2 = handleSamplingAndRotationBitmap(requireContext(), path!!)
-                            val bitmap1 = scaleDown(bitmapCoffee2!!, 700f, true )
-                            binding.ivCoffee2.setImageBitmap(bitmap1)
-                            stringImage2 = Converters().fromBitmap(bitmap1)
-                        }
-                        3 -> {
-                            bitmapCoffee3 = handleSamplingAndRotationBitmap(requireContext(), path!!)
-                            val bitmap1 = scaleDown(bitmapCoffee3!!, 700f, true )
-                            binding.ivCoffee3.setImageBitmap(bitmap1)
-                            stringImage3 = Converters().fromBitmap(bitmap1)
-                        }
+                //bitmap = MediaStore.Images.Media.getBitmap(contentResolver, path)
+                when (clickedImage) {
+                    1 -> {
+                        bitmapCoffee1 = handleSamplingAndRotationBitmap(requireContext(), path!!)
+                        val bitmap1 = scaleDown(bitmapCoffee1!!, 700f, true )
+                        binding.ivCoffee1.setImageBitmap(bitmap1)
+                        stringImage1 = Converters().fromBitmap(bitmap1)
                     }
+                    2 -> {
+                        bitmapCoffee2 = handleSamplingAndRotationBitmap(requireContext(), path!!)
+                        val bitmap1 = scaleDown(bitmapCoffee2!!, 700f, true )
+                        binding.ivCoffee2.setImageBitmap(bitmap1)
+                        stringImage2 = Converters().fromBitmap(bitmap1)
+                    }
+                    3 -> {
+                        bitmapCoffee3 = handleSamplingAndRotationBitmap(requireContext(), path!!)
+                        val bitmap1 = scaleDown(bitmapCoffee3!!, 700f, true )
+                        binding.ivCoffee3.setImageBitmap(bitmap1)
+                        stringImage3 = Converters().fromBitmap(bitmap1)
+                    }
+                }
 
+            } else if (result.resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(requireContext(), ImagePicker.getError(result.data), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -202,11 +205,19 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
     }
 
     private fun selectImage() {
-        val intent = Intent()
+        /*val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-        resultLauncher.launch(intent)
-        //startActivityForResult(intent, IMG_RESULT)
+        resultLauncher.launch(intent)*/
+        //startActivityForResult(intent, IMG_RESULT)*/
+
+        ImagePicker.with(requireActivity())
+            .crop(1f,1f)
+            .compress(1024)
+            .maxResultSize(1080, 1080)
+            .createIntent {
+                resultLauncher.launch(it)
+            }
     }
 
     override fun observe() {
@@ -242,8 +253,7 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                         prefUtils.save(USERGOLD, currentGold-5)
                         binding.progressAddFragment.visibility = View.GONE
                         binding.btnShare.isClickable = true
-                        Toast.makeText(requireContext(), it.successMessage, Toast.LENGTH_SHORT).show()
-                        navController?.navigate(R.id.homeFragment)
+                        navController?.navigate(R.id.action_addFragment_to_sharedFalFragment)
                     }
                 }
             }
