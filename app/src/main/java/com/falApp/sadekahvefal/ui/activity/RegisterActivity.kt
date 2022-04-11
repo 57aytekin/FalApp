@@ -53,7 +53,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, UsersViewModel>()
                     is ApiState.Success -> {
                         prefUtils.save(Constant.USERNAME, it.data.login!!.user_name)
                         prefUtils.save(Constant.USERID, it.data.login.user_id!!)
-                        prefUtils.save(Constant.USERGOLD, it.data.login.gold!!)
+                        //prefUtils.save(Constant.USERGOLD, it.data.login.gold!!)
                         Toast.makeText(this@RegisterActivity, it.data.message, Toast.LENGTH_SHORT).show()
                     }
                 }

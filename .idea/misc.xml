@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/drawable/shape_purple.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/spinner_arrow.xml" value="0.1185" />
         <entry key="app/src/main/res/drawable/spinner_bottom_line.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.1565" />
         <entry key="app/src/main/res/layout/activity_comment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_commented.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.23802083333333332" />

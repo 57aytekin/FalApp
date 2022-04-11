@@ -3,7 +3,6 @@ package com.falApp.sadekahvefal.ui.fragment
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.util.Base64.*
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -20,11 +19,9 @@ import com.falApp.sadekahvefal.model.HomeRecyclerViewItem
 import com.falApp.sadekahvefal.ui.PostViewModel
 import com.falApp.sadekahvefal.ui.fragment.bottomSheet.UserInfBottomSheet
 import com.falApp.sadekahvefal.utils.*
-import com.falApp.sadekahvefal.utils.Constant.USERGOLD
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.util.*
 import javax.inject.Inject
 
 
@@ -250,7 +247,6 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                     }
                     is ApiState.SuccessMessage -> {
                         //update local gold
-                        prefUtils.save(USERGOLD, currentGold-5)
                         binding.progressAddFragment.visibility = View.GONE
                         binding.btnShare.isClickable = true
                         navController?.navigate(R.id.action_addFragment_to_sharedFalFragment)

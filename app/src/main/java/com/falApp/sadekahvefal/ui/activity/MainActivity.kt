@@ -7,13 +7,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.falApp.sadekahvefal.R
 import com.falApp.sadekahvefal.base.BaseActivity
-import com.falApp.sadekahvefal.base.BaseViewModel
 import com.falApp.sadekahvefal.databinding.ActivityMainBinding
+import com.falApp.sadekahvefal.utils.Constant.USERGOLD
 import com.falApp.sadekahvefal.utils.NavigateFragmentParams
 import com.falApp.sadekahvefal.utils.PrefUtils
 import com.falApp.sadekahvefal.utils.checkItem
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.FirebaseMessagingService
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -48,6 +47,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     fun updateBadge(count : Int) {
         mutableBadgeCount.postValue(count)
+    }
+    fun updateGold(count : Int) {
+        prefUtils.save(USERGOLD, count)
     }
 
     override fun observe() {

@@ -14,6 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Launcher theme. -->
+    <style name="SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="MaterialDesign" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/purple_200</item>

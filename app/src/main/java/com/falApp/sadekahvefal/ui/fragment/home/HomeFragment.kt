@@ -58,6 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickLi
                     is ApiState.Success -> {
                         homeRecyclerViewAdapter.updateUserTopList(it.data!!.top_user)
                         (activity as MainActivity?)?.updateBadge(it.data.badgeCount)
+                        (activity as MainActivity?)?.updateGold(it.data.gold)
                     }
 
                     is ApiState.SuccessMessage  -> Toast.makeText(
