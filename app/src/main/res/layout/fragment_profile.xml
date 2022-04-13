@@ -165,6 +165,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvWinAndShare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
@@ -319,7 +320,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginBottom="10dp"
                         android:visibility="gone"
-                        android:text="Henüz bir paylaşım yapmadınız. "/>
+                        android:text="Paylaşım bulunamadı. "/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_profile_photos"

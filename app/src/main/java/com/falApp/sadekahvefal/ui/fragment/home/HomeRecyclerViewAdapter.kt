@@ -14,6 +14,7 @@ import com.falApp.sadekahvefal.R
 import com.falApp.sadekahvefal.model.HomeRecyclerViewItem
 import com.falApp.sadekahvefal.utils.ClickListeners
 import com.falApp.sadekahvefal.utils.Converters
+import com.falApp.sadekahvefal.utils.TopUserClickListener
 
 const val ITEM_TYPE_USER = 0
 const val ITEM_TYPE_POST = 1
@@ -21,9 +22,9 @@ const val ITEM_TYPE_POST = 1
 class HomeRecyclerViewAdapter(private val clickListeners: ClickListeners) :
     PagingDataAdapter<HomeRecyclerViewItem.Post, RecyclerView.ViewHolder>(
         SEARCH_COMPARATOR
-    ) {
+    ), TopUserClickListener {
     private var topUserList = listOf<HomeRecyclerViewItem.User>()
-    private val userAdapter: TopUserAdapter by lazy { TopUserAdapter() }
+    private val userAdapter: TopUserAdapter by lazy { TopUserAdapter(this) }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -63,7 +64,7 @@ class HomeRecyclerViewAdapter(private val clickListeners: ClickListeners) :
                 Glide.with(postHolder.context).load(item.image_1).into(postHolder.image1)
                 Glide.with(postHolder.context).load(item.image_2).into(postHolder.image2)
                 Glide.with(postHolder.context).load(item.image_3).into(postHolder.image3)
-                postHolder.btnComment.setOnClickListener { clickListeners.onButtonCLick(item!!) }
+                postHolder.itemView.setOnClickListener { clickListeners.onButtonCLick(item) }
             }
             is HomeRecyclerViewHolder.TopUserViewHolder -> {
                 val userHolder : HomeRecyclerViewHolder.TopUserViewHolder = holder
@@ -112,6 +113,10 @@ class HomeRecyclerViewAdapter(private val clickListeners: ClickListeners) :
                     oldItem == newItem
 
             }
+    }
+
+    override fun onUserClick(userId: Int) {
+        clickListeners.onUserClick(userId)
     }
 }
 

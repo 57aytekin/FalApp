@@ -8,6 +8,7 @@ interface BottomSheetClickListener {
 }
 interface ClickListeners {
     fun onButtonCLick(post: HomeRecyclerViewItem.Post)
+    fun onUserClick(userId : Int)
 }
 
 interface CommentListListener {
@@ -15,4 +16,7 @@ interface CommentListListener {
 }
 interface AdminItemClickListener {
     fun isConfirmItem(postId : Int, isConfirm : Int, token : String)
+}
+interface TopUserClickListener {
+    fun onUserClick(userId : Int)
 }

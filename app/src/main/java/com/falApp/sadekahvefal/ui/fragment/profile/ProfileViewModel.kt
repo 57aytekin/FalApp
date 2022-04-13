@@ -23,11 +23,8 @@ class ProfileViewModel @Inject constructor(
     private val _onJobList = MutableStateFlow<ApiState<UserProfileResponse?>>(ApiState.Empty)
     val onJobList : StateFlow<ApiState<UserProfileResponse?>> = _onJobList
 
-    init {
-        getUserProfile(prefUtils.getUserId())
-    }
 
-    private fun getUserProfile(userId : Int) = viewModelScope.launch {
+    fun getUserProfile(userId : Int) = viewModelScope.launch {
         _onJobList.value = ApiState.Loading
         profileRepository.getUserProfile(userId, viewModelScope,
             onSuccess = {

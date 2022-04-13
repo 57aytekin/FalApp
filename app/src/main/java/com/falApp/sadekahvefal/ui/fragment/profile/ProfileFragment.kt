@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.falApp.sadekahvefal.R
 import com.falApp.sadekahvefal.base.BaseFragment
@@ -18,11 +19,12 @@ import com.falApp.sadekahvefal.utils.ApiState
 import com.falApp.sadekahvefal.utils.PrefUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.lang.reflect.InvocationTargetException
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
-    var navController: NavController? = null
+    private val args : ProfileFragmentArgs? by navArgs()
     override val viewModel: ProfileViewModel by viewModels()
     @Inject
     lateinit var prefUtils: PrefUtils
@@ -33,7 +35,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     @SuppressLint("SetTextI18n")
     override fun onFragmentCreated() {
-        navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+        var userId = prefUtils.getUserId()
+        try { if (args != null) userId = args?.userId!!.toInt() }
+        catch (e: InvocationTargetException) { userId = prefUtils.getUserId()}
+        if (userId != prefUtils.getUserId()) {
+            binding.ivProfileEdit.visibility = View.GONE
+            binding.cvWinAndShare.visibility = View.GONE
+        }
+
+        viewModel.getUserProfile(userId)
         binding.userProfileAppbar.rlExit.setOnClickListener {
             prefUtils.clear()
             Toast.makeText(requireContext(), "Çıkış yapıldı.", Toast.LENGTH_SHORT).show()
@@ -45,7 +55,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             actionProfileFragmentToEditProfileFragment(
                 userInf.email, userInf.user_name, userInf.first_name, userInf.last_name!!, userInf.paths!!
             )
-            navController?.navigate(action)
+            findMyNavController(this).navigate(action)
         }
     }
 

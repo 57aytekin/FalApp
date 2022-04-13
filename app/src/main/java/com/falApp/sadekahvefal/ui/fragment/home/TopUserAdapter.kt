@@ -1,6 +1,7 @@
 package com.falApp.sadekahvefal.ui.fragment.home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.falApp.sadekahvefal.databinding.TopCommentersItemRowBinding
 import com.falApp.sadekahvefal.model.HomeRecyclerViewItem
+import com.falApp.sadekahvefal.utils.ClickListeners
+import com.falApp.sadekahvefal.utils.TopUserClickListener
 
-class TopUserAdapter(): RecyclerView.Adapter<TopUserAdapter.UserHolder>() {
+class TopUserAdapter(
+    private val topUserClickListener: TopUserClickListener
+): RecyclerView.Adapter<TopUserAdapter.UserHolder>() {
     private var userList : ArrayList<HomeRecyclerViewItem.User> = arrayListOf()
 
     private val diffCallBack = object : DiffUtil.ItemCallback<HomeRecyclerViewItem.User>() {
@@ -42,6 +47,9 @@ class TopUserAdapter(): RecyclerView.Adapter<TopUserAdapter.UserHolder>() {
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
         val user = differ.currentList[position]
         holder.bind(user, holder)
+        holder.itemView.setOnClickListener {
+            topUserClickListener.onUserClick(user.user_id!!)
+        }
     }
 
     inner class UserHolder(private val binding: TopCommentersItemRowBinding) :
@@ -53,6 +61,7 @@ class TopUserAdapter(): RecyclerView.Adapter<TopUserAdapter.UserHolder>() {
                 Glide.with(holder.itemView.context).load(user.paths).into(ivUserTopImage)
             tvUserFirstLastName.text = user.first_name + " " + user.last_name
             tvTopUserName.text = "@"+user.user_name
+            tvTopUserScore.text = user.score.toString()
         }
     }
 

@@ -28,7 +28,5 @@ sealed class HomeRecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHol
         val image1: ImageView = itemView.findViewById(R.id.ivPostCoffee1)
         val image2: ImageView = itemView.findViewById(R.id.ivPostCoffee2)
         val image3: ImageView = itemView.findViewById(R.id.ivPostCoffee3)
-
-        val btnComment : Button = itemView.findViewById(R.id.btnComment)
     }
 }
