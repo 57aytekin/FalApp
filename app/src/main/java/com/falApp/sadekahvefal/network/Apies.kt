@@ -42,7 +42,8 @@ interface Apies {
         @Field("relation_id") relationId: Int,
         @Field("age") age: Int,
         @Field("ekstra_infromation") ekstraInfromation: String,
-        @Field("gold") gold: Int
+        @Field("gold") gold: Int,
+        @Field("commentator") commentator: Int,
     ) : Response<StaticResponse>
 
     @GET("get_post.php")
@@ -64,7 +65,8 @@ interface Apies {
         @Field("commentor_id") commentorId: Int,
         @Field("post_owner_id") postOwnerId: Int,
         @Field("comment") comment: String,
-        @Field("token") token: String
+        @Field("token") token: String,
+        @Field("commentator") commentator: Int
     ) : Response<StaticResponse>
 
     @FormUrlEncoded

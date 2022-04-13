@@ -2,14 +2,9 @@ package com.falApp.sadekahvefal.ui.fragment.home
 
 import android.content.Intent
 import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.falApp.sadekahvefal.R
 import com.falApp.sadekahvefal.base.BaseFragment
 import com.falApp.sadekahvefal.databinding.FragmentHomeBinding
 import com.falApp.sadekahvefal.model.HomeRecyclerViewItem
@@ -18,6 +13,7 @@ import com.falApp.sadekahvefal.ui.activity.comment.CommentActivity
 import com.falApp.sadekahvefal.utils.ApiState
 import com.falApp.sadekahvefal.utils.ClickListeners
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.age
+import com.falApp.sadekahvefal.utils.Constant.CommentItem.commentator
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.gender
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.image1
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.image2
@@ -29,7 +25,6 @@ import com.falApp.sadekahvefal.utils.Constant.CommentItem.user_id
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.user_token
 import com.falApp.sadekahvefal.utils.Constant.CommentItem.work
 import com.falApp.sadekahvefal.utils.PrefUtils
-import com.falApp.sadekahvefal.utils.checkItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -98,6 +93,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ClickLi
         intent.putExtra(post_id, post.post_id)
         intent.putExtra(user_id, post.user_id)
         intent.putExtra(user_token, post.token)
+        intent.putExtra(commentator, post.commentator)
         startActivity(intent)
     }
 

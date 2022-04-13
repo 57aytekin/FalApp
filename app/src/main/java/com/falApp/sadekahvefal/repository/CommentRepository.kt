@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class CommentRepository @Inject constructor(private val apiClientImpl: APIClientImpl): BaseRepository() {
     suspend fun saveComment(
-        postId : Int, commentorId : Int, postOwnerId : Int, comment : String, token : String,
+        postId : Int, commentorId : Int, postOwnerId : Int, comment : String, token : String, commentator : Int,
         scope: CoroutineScope,
         onSuccess: ((StaticResponse) -> Unit),
         onErrorAction: ((String?) -> Unit)
@@ -20,7 +20,7 @@ class CommentRepository @Inject constructor(private val apiClientImpl: APIClient
         scope = scope,
         client = {
             apiClientImpl.apiCollect
-                .saveComment(postId, commentorId, postOwnerId, comment, token)
+                .saveComment(postId, commentorId, postOwnerId, comment, token, commentator)
         },
         onSuccess = {
             onSuccess(it.body()!!)

@@ -38,7 +38,7 @@ class PostRepository @Inject constructor(private val apiServiceImp : APIClientIm
             apiServiceImp.apiCollect
                 .savePost(
                     post.image_1,name1, post.image_2, name2, post.image_3, name3, post.user_id,
-                    post.gender_id!!, post.job_id!!, post.relation_id!!, post.age!!, post.ekstra_infromation!!, gold)
+                    post.gender_id!!, post.job_id!!, post.relation_id!!, post.age!!, post.ekstra_infromation!!, gold, post.commentator)
                  },
         onSuccess = {
             onSuccess(it.body()!!)

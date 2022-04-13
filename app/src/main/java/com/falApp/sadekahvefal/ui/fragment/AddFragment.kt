@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.falApp.sadekahvefal.R
 import com.falApp.sadekahvefal.base.BaseFragment
 import com.falApp.sadekahvefal.databinding.FragmentAddBinding
@@ -29,7 +30,6 @@ import javax.inject.Inject
 class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomSheetClickListener {
     @Inject
     lateinit var prefUtils: PrefUtils
-    private var navController: NavController? = null
     override val viewModel : PostViewModel by viewModels()
     private var jobList = mutableListOf<String>()
     lateinit var resultLauncher : ActivityResultLauncher<Intent>
@@ -46,12 +46,12 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
     var relationList = listOf<String>()
     var ageLit = listOf<String>()
     private var currentGold = 0
+    var falCommentator = Commentator.Everyone
 
     override fun getViewBinding() = FragmentAddBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {
         currentGold = prefUtils.getUserGold()
-        navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment)
         binding.appbar.tvCoin.text = prefUtils.getUserGold().toString()
 
         val genderBottomSheet = UserInfBottomSheet(this)
@@ -71,14 +71,19 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
         }
 
         binding.btnShare.setOnClickListener {
-            if (currentGold >= 5) {
-                val updatedGold = currentGold -5
+            var requiredGold = 5
+            if (falCommentator == Commentator.Falci) {
+                requiredGold = 10
+            }
+            if (currentGold >= requiredGold) {
+                val updatedGold = currentGold -requiredGold
                 if (validShare()) {
                     val post = HomeRecyclerViewItem.Post(image_1 = stringImage1!!, image_2 = stringImage2!!, image_3 = stringImage3!!,
                         user_id = prefUtils.getUserId(), gender_id = getItemId(genderList, binding.tvGender.text.toString()),
                         job_id = getItemId(jobList, binding.tvJob.text.toString()),
                         relation_id = getItemId(relationList, binding.tvRelation.text.toString()),
-                        age = binding.tvAge.text.toString().toInt(), ekstra_infromation = binding.etEkstraInf.text.toString() )
+                        age = binding.tvAge.text.toString().toInt(), ekstra_infromation = binding.etEkstraInf.text.toString(),
+                        commentator = falCommentator.ordinal)
 
                     val rnds = (0..10000).random()
                     val name1 = prefUtils.getUserName()+"1"+rnds.toString()
@@ -103,6 +108,19 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
         binding.cvCoffeeImage3.setOnClickListener {
             clickedCoffeeImage.postValue(3)
             selectImage()
+        }
+        //Linear Click
+        binding.lnEveryone.setOnClickListener {
+            falCommentator = Commentator.Everyone
+            binding.lnEveryone.alpha = 1f
+            binding.lnFalci.alpha = 0.2f
+            binding.tvUserGold.text = "5 )"
+        }
+        binding.lnFalci.setOnClickListener {
+            falCommentator = Commentator.Falci
+            binding.lnEveryone.alpha = 0.2f
+            binding.lnFalci.alpha = 1f
+            binding.tvUserGold.text = "10 )"
         }
 
         //Gender
@@ -249,7 +267,8 @@ class AddFragment : BaseFragment<FragmentAddBinding, PostViewModel>(), BottomShe
                         //update local gold
                         binding.progressAddFragment.visibility = View.GONE
                         binding.btnShare.isClickable = true
-                        navController?.navigate(R.id.action_addFragment_to_sharedFalFragment)
+                        val action = AddFragmentDirections.actionAddFragmentToSharedFalFragment(falCommentator.name)
+                        findMyNavController(this@AddFragment).navigate(action)
                     }
                 }
             }

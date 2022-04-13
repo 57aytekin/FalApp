@@ -15,7 +15,7 @@ interface CommentListListener {
     fun onItemCLick(comment: Comment)
 }
 interface AdminItemClickListener {
-    fun isConfirmItem(postId : Int, isConfirm : Int, token : String)
+    fun isConfirmItem(post : HomeRecyclerViewItem.Post, isConfirm : Int, token : String, commentator : Int?)
 }
 interface TopUserClickListener {
     fun onUserClick(userId : Int)

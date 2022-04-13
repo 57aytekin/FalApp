@@ -76,5 +76,9 @@
         <action
             android:id="@+id/action_sharedFalFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="commentator"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

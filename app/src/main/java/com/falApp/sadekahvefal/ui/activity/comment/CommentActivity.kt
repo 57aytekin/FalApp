@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.falApp.sadekahvefal.base.BaseActivity
 import com.falApp.sadekahvefal.databinding.ActivityCommentBinding
 import com.falApp.sadekahvefal.ui.fragment.SliderAdapter
-import com.falApp.sadekahvefal.utils.ApiState
-import com.falApp.sadekahvefal.utils.Constant
-import com.falApp.sadekahvefal.utils.NavigateFragmentParams
-import com.falApp.sadekahvefal.utils.PrefUtils
+import com.falApp.sadekahvefal.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -42,13 +39,19 @@ class CommentActivity : BaseActivity<ActivityCommentBinding, CommentViewModel>()
         val image1 = intent.getStringExtra(Constant.CommentItem.image1)
         val image2 = intent.getStringExtra(Constant.CommentItem.image2)
         val image3 = intent.getStringExtra(Constant.CommentItem.image3)
+        val commentator = intent.getIntExtra(Constant.CommentItem.commentator,0)
         val urlList = mutableListOf(image1!!, image2!!, image3!!)
         sliderAdapter.submitList(urlList)
 
         binding.btnCommentShare.setOnClickListener {
             val comment = binding.etComment.text
-            if (comment.isNotEmpty())
-                viewModel.saveComment(postId, prefUtils.getUserId(), userId, comment.toString(), token!!)
+            var commentatorId = prefUtils.getUserId()
+            if (comment.isNotEmpty()){
+                if (commentator == Commentator.Falci.ordinal) {
+                    commentatorId = (1..3).random()
+                }
+                viewModel.saveComment(postId, commentatorId, userId, comment.toString(), token!!, commentator)
+            }
             else
                 Toast.makeText(this, "Lütfen bir yorum giriniz", Toast.LENGTH_SHORT).show()
         }

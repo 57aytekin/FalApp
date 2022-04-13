@@ -3,27 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_rectangle.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/bg_top_radius.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_avatar.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.186" />
+        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_comment_24.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/ic_baseline_transgender_24.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/ic_black_coin.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_coffee.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_coin.xml" value="0.185" />
+        <entry key="app/src/main/res/drawable/ic_coin_small_white.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/ic_exit.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_gray_age.xml" value="0.1615" />
         <entry key="app/src/main/res/drawable/ic_gray_relation.xml" value="0.1615" />
         <entry key="app/src/main/res/drawable/ic_gray_work.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/ic_green_check.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.184" />
         <entry key="app/src/main/res/drawable/ic_pencil.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/ic_play.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.184" />
         <entry key="app/src/main/res/drawable/ic_yellow_coin.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/shape_button.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/shape_button_not_stroke.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/shape_purple.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/spinner_arrow.xml" value="0.1185" />
         <entry key="app/src/main/res/drawable/spinner_bottom_line.xml" value="0.1265" />

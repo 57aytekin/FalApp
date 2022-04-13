@@ -21,6 +21,7 @@ object Constant {
         const val post_id = "post_id"
         const val user_id = "user_id"
         const val user_token = "user_token"
+        const val commentator = "commentator"
     }
     object CommentedItem{
         const val commentId = "commentId"

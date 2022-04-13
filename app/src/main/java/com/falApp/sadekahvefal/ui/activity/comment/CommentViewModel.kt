@@ -28,11 +28,11 @@ class CommentViewModel @Inject constructor(
 
     var mutableComment = MutableLiveData<List<Comment>>()
 
-    fun saveComment( postId : Int, commentorId : Int, postOwnerId : Int, comment : String, token : String) =
+    fun saveComment( postId : Int, commentorId : Int, postOwnerId : Int, comment : String, token : String, commentator : Int) =
         viewModelScope.launch {
             _onJobList.value = ApiState.Loading
             commentRepository.saveComment(
-                postId, commentorId, postOwnerId, comment, token,
+                postId, commentorId, postOwnerId, comment, token, commentator,
                 scope = viewModelScope,
                 onSuccess = {
                     loadingDetection.postValue(false)
